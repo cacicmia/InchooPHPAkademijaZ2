@@ -31,7 +31,9 @@ foreach($arr as  $i=> $a){
          if (!(filter_var($a, FILTER_VALIDATE_INT)|| filter_var($a, FILTER_VALIDATE_FLOAT ))){
          $arr[$i] = (int) preg_replace('/[^0-9.]/','',$a);
      }
-       
+    if ($a==0 || $a=''){
+        array_splice($arr, $i, 1);
+    }
  echo $a . "<br />";
 }
 asort($arr);
