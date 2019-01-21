@@ -14,6 +14,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Z2</title>
+    <style>
+        .numTable{
+            border: 1px solid #FFF;
+        }
+        .numTable td {
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
@@ -42,9 +51,6 @@ foreach($arr as  $key => &$value){
 
 }
 $avg= $sum/$count;
-echo $avg. "<br />";
-
-
 
 if(!(int)$avg%2==0) {
     $avg++;
@@ -52,17 +58,32 @@ if(!(int)$avg%2==0) {
 array_push($arr, (int)$avg);
 sort($arr);
 
-$bigIndex= count($arr)-1;
-$tdNum=((int)sqrt($arr[$bigIndex]))+1;
+$big= count($arr);
+$tdNum=((int)sqrt($arr[$big-1]))+1;
+$trNum=intdiv($big,$tdNum)+1;
 var_dump($arr);
 
 }
 
 ?>
-<table>
+<table class="numTable">
     <?php
-    for ($i=0; $i<$tdNum; $i++){
+    echo "eko";
+    for ($i=0; $i<$trNum; $i++){
+        echo "<tr>"."ekoooooo";
+        for ($j=0;$j<$tdNum; $j++){
+            echo "<td> "."ekoooooo";
+            foreach($arr as $el) {
+                if ($i+$j==$avg) {
+                    echo "<b>{$el}</b>";
+                } elseif ($i+$j==$el) {
+                    echo $el;
 
+                }
+            echo "</td>";
+            }
+        }
+        echo "</tr>";
     }
     ?>
 </table>
