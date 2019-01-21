@@ -26,6 +26,9 @@
 <?php
 $niz = $_POST['niz'];
 $arr = explode(',', $niz);
+if (count($arr)<=1){
+    echo "Nedovoljan unos";
+} else {
 array_walk($arr, function(&$x){$x = intval($x);});
 $sum=0;
 $count=0;
@@ -40,16 +43,28 @@ foreach($arr as  $key => &$value){
 }
 $avg= $sum/$count;
 echo $avg. "<br />";
+
+
+
 if(!(int)$avg%2==0) {
     $avg++;
 }
 array_push($arr, (int)$avg);
-asort($arr);
+sort($arr);
 
+$bigIndex= count($arr)-1;
+$tdNum=((int)sqrt($arr[$bigIndex]))+1;
 var_dump($arr);
 
-
+}
 
 ?>
+<table>
+    <?php
+    for ($i=0; $i<$tdNum; $i++){
+
+    }
+    ?>
+</table>
 </body>
 </html>
