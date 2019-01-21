@@ -26,15 +26,14 @@
 <?php
 $niz = $_POST['niz'];
 $arr = explode(',', $niz);
-foreach($arr as  $i=> $a){
-    trim($arr[$i]);
-         if (!(filter_var($a, FILTER_VALIDATE_INT)|| filter_var($a, FILTER_VALIDATE_FLOAT ))){
-         $arr[$i] = (int) preg_replace('/[^0-9.]/','',$a);
-     }
-    if ($a==0 || $a=''){
-        array_splice($arr, $i, 1);
+foreach($arr as  $value){
+    trim($value);
+
+    if ($value<=0 || $value==''){
+        unset($value);
     }
- echo $a . "<br />";
+     
+ echo $value . "<br />";
 }
 asort($arr);
 var_dump($arr);
