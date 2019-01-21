@@ -26,17 +26,30 @@
 <?php
 $niz = $_POST['niz'];
 $arr = explode(',', $niz);
-foreach($arr as  $value){
+array_walk($arr, function(&$x){$x = intval($x);});
+$sum=0;
+$count=0;
+foreach($arr as  $key => &$value){
     trim($value);
-
-    if ($value<=0 || $value==''){
-        unset($value);
+    if ($value<=0){
+        array_splice($arr, $key, 1);
     }
-     
- echo $value . "<br />";
+    $sum+=$value;
+    $count++;
+
 }
+$avg= $sum/$count;
+echo $avg. "<br />";
+if(!(int)$avg%2==0) {
+    $avg++;
+}
+array_push($arr, (int)$avg);
 asort($arr);
+
 var_dump($arr);
+
+
+
 ?>
 </body>
 </html>
