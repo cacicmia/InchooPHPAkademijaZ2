@@ -16,11 +16,16 @@
     <title>Z2</title>
     <style>
         .numTable{
-            border: 1px solid #FFF;
+            margin: 2%;
         }
+        .numTable tr,
         .numTable td {
-            padding: 5px;
+            padding: 10px;
+            margin: 5px;
             text-align: center;
+           vertical-align: center;
+            background-color: #EDF;
+
         }
     </style>
 </head>
@@ -33,7 +38,7 @@
 
 </form>
 <?php
-$niz = $_POST['niz'];
+$niz = htmlspecialchars( $_POST['niz']);
 $arr = explode(',', $niz);
 if (count($arr)<=1){
     echo "Nedovoljan unos";
@@ -58,31 +63,36 @@ if(!(int)$avg%2==0) {
 array_push($arr, (int)$avg);
 sort($arr);
 
-$big= count($arr);
-$tdNum=((int)sqrt($arr[$big-1]))+1;
-$trNum=intdiv($big,$tdNum)+1;
-var_dump($arr);
+$all= count($arr);
+$tdNum=((int)sqrt($arr[$all-1]))+1;
 
+
+//var_dump($arr);
+$counter=0;
 }
 
 ?>
 <table class="numTable">
     <?php
-    echo "eko";
-    for ($i=0; $i<$trNum; $i++){
-        echo "<tr>"."ekoooooo";
-        for ($j=0;$j<$tdNum; $j++){
-            echo "<td> "."ekoooooo";
-            foreach($arr as $el) {
-                if ($i+$j==$avg) {
-                    echo "<b>{$el}</b>";
-                } elseif ($i+$j==$el) {
-                    echo $el;
 
+    for ($i=0; $i<$tdNum; $i++) {
+        echo "<tr>";
+        for ($j = 0; $j < $tdNum; $j++) {
+            $counter++;
+            echo "<td> &nbsp;";
+                if (in_array($counter, $arr)&&($counter==$avg)){
+                    echo "<b>".$counter. "</b>";
+                } elseif (in_array($counter, $arr)&& ($counter%2==0)){
+                    echo $counter;
                 }
-            echo "</td>";
-            }
+
+
+
+                echo "</td>";
+
+
         }
+
         echo "</tr>";
     }
     ?>
